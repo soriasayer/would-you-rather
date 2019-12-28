@@ -1,0 +1,20 @@
+@import '~antd/dist/antd.css';
+
+@media (min-width: 576px) {
+    .borderLeft {
+        border-left: 1px solid #ECECEC;
+        padding-left: 30px !important;
+    }
+  }
+
+  .imgSize {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto !important;
+
+  }
+
+  .selectStyle {
+    width: 100%;
+    margin-bottom: 10px !important;
+  }
