@@ -6,7 +6,7 @@ class NewQuestion extends Component {
     render() {
         return(
             <Row>
-                <Col xs={24} md={{ span: 12, offset: 6 }} >
+                <Col xs={{ span: 22, offset: 1}} md={{ span: 14, offset: 4 }} >
                     <Card headStyle={{backgroundColor: '#ECECEC', textAlign: "center"}} title="Create New Question" bordered={true}>
                         <Row gutter={24} type='flex' justify='center' >
                             <Col md={24} >
