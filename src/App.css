@@ -73,3 +73,18 @@
       flex-flow: row wrap;
       justify-content: space-between;
   }
+
+  .detailContainer {
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+  }
+
+  .navStyle {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    color: #ffffffa6;
+  }
