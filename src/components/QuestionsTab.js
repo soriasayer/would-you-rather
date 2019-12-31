@@ -7,7 +7,7 @@ const { TabPane } = Tabs;
 class QuestionsTab extends Component {
     render() {
         return(
-            <Row type='flex' justify='center'>
+            <Row>
                 <Col xs={{ span: 22, offset: 1}} lg={{ span: 20, offset: 2 }}>
                     <Tabs tabBarStyle={{display: 'flex', justifyContent: 'center'}} type="card">
                         <TabPane tab="Unanswered Questions" key="1">

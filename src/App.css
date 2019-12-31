@@ -3,8 +3,12 @@
 @media (min-width: 576px) {
     .divider {
         display: inline;
-        /* border-left: 1px solid #ECECEC;
-        padding-left: 30px !important; */
+    }
+  }
+
+  @media (max-width: 577px) {
+    .leftMenu, .rightMenu {
+        display: none !important;
     }
   }
 
@@ -86,5 +90,6 @@
     flex-flow: row wrap;
     justify-content: flex-end;
     align-items: center;
-    color: #ffffffa6;
   }
+
+  
