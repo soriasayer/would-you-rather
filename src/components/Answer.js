@@ -1,17 +1,39 @@
 import React, { Component } from 'react'
 import { Row, Col, Avatar, Typography, Radio, Button, Divider } from 'antd';
 import Cards from './common/cards'
+import { connect } from 'react-redux'
+import { handleAnswerQuestions } from '../actions/questions'
 
-const { Title } = Typography;
+const { Title } = Typography
 
 class Answer extends Component {
+    state = {
+        value: null
+    }
+
+    handleChange = (e) => {
+        this.setState({value: e.target.value}) 
+    }  
+    
+    handleClick = () => {
+        const { dispatch, authedUser, question } = this.props
+    
+        dispatch(handleAnswerQuestions({
+            authedUser,
+            qid: question.id,
+            answer: this.state.value
+        })) 
+       
+    }
+
     render() {
+        const { question, user } = this.props
         return(
-            <Cards title="Soria asks:" headStyle={{backgroundColor: '#ECECEC'}}>
+            <Cards title={`${user.name} asks:`} headStyle={{backgroundColor: '#ECECEC'}}>
                 <Row gutter={16} type='flex' justify='center'>
                     <Col sm={8} sx={24} >
                         <div className="avatarContainer">
-                            <Avatar className="avatarStyle" size={150} icon="user" src='https://i.pinimg.com/originals/f1/a3/6a/f1a36a8bf241e6deaa66c268d22b5035.jpg'/>
+                            <Avatar className="avatarStyle" size={160} icon="user" src={user.avatarURL} />
                         </div>
                     </Col>
                     <Col sm={1} >
@@ -22,19 +44,22 @@ class Answer extends Component {
                     <Col sm={15} sx={24} >
                         <div className="detailContainer">
                             <Title level={3}>Would You Rater...</Title>
-                            <Radio.Group style={{paddingBottom: '15px'}}>
+                            <Radio.Group 
+                            style={{paddingBottom: '15px'}} 
+                            onChange={this.handleChange}
+                            value={this.state.value}>
                                 <div>
-                                    <Radio value='optionOne'>
-                                        be a front-end developer
+                                    <Radio style={{fontSize: '20px'}}  value="optionOne">
+                                       {question.optionOne.text}
                                     </Radio>
                                 </div>
                                 <div>
-                                    <Radio value='optionTwo'>
-                                        be a back-end developer
+                                    <Radio style={{fontSize: '20px'}} value="optionTwo">
+                                    {question.optionTwo.text}
                                     </Radio>
                                 </div>
                             </Radio.Group>
-                            <Button type="primary" block>
+                            <Button type="primary" block onClick={this.handleClick}>
                                 Submit
                             </Button>
                         </div>
@@ -45,6 +70,17 @@ class Answer extends Component {
     }
 }
 
-export default Answer
+function mapStateToProps({questions, authedUser, users}, {id}) {
+    const question = questions[id]
+    const user = users[question.author]
+      
+    return {
+        question,
+        authedUser,
+        user
+    }
+}
+
+export default connect(mapStateToProps)(Answer)
 
 

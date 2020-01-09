@@ -1,12 +1,38 @@
 import React, { Component } from 'react'
-import { Row, Col, Select, Button, Typography } from 'antd';
+import { Row, Col, Select, Avatar, Button, Typography } from 'antd';
 import Cards from './common/cards'
+import { connect } from 'react-redux'
+import { setAuthedUser } from '../actions/authedUser'
+import { Redirect } from 'react-router-dom';
 
 const { Title } = Typography;
 const { Option } = Select;
 
 class LoginPage extends Component {
+    state = {
+        name: '',
+        toHome: false
+    }
+
+    handleChange = (value) => {
+        this.setState({ name: value})
+    }  
+    
+    handleOnClick = () => {
+        const { dispatch } = this.props
+        const { name } = this.state
+        dispatch(setAuthedUser(name))
+        this.setState({
+            toHome: name ? true : false
+        })
+    }
+
     render() {
+        const { users } = this.props
+        const { toHome } = this.state
+        if(toHome === true) {
+            return <Redirect to='/' />
+        }
         return(
             <Cards title="Welcome to the Would You Rather App!" headStyle={{backgroundColor: '#ECECEC', textAlign: "center"}} >
                 <Row gutter={24} type='flex' justify='center' >
@@ -15,12 +41,20 @@ class LoginPage extends Component {
                             <img alt="redux" src="https://www.clker.com/cliparts/N/0/4/q/4/R/react-redux.svg" className="imgSize" />
                         </div>
                         <Title style={{fontSize: 14}} level={4}>Please login to continue...</Title>
-                        <Select placeholder="Select a person" className="selectStyle" >
-                            <Option value="sarahedo">Sarah Edo</Option>
-                            <Option value="tylermcginnis">Tyler McGinnis</Option>
-                            <Option value="johndoe">John Doe</Option>
+                        <Select 
+                        placeholder="Select a User"
+                        className="selectStyle" 
+                        onChange={this.handleChange} >
+                        {users.map(user => (
+                           <Option key={user.id} value={user.id}>
+                            <Avatar style={{marginRight: '5px'}} size="small" src={user.avatarURL} />
+                            {user.name}
+                            </Option>
+                        ))}  
                         </Select>
-                        <Button type="primary" htmlType="submit" className="login-form-button" block>
+                        <Button type="primary" htmlType="submit" 
+                        className="login-form-button" block 
+                        onClick={this.handleOnClick}>
                             Log in
                         </Button>
                     </Col>
@@ -30,4 +64,12 @@ class LoginPage extends Component {
     }
 }
 
-export default LoginPage
+function mapStateToProps({users}) {
+    const userObj = Object.keys(users).map(user => users[user])
+    
+    return{
+        users: userObj,
+    }
+}
+
+export default connect(mapStateToProps)(LoginPage)

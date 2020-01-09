@@ -1,40 +1,49 @@
-import React, { Component } from 'react';
-import { Menu, Col, Avatar, Button  } from 'antd';
+import React, { Component, Fragment } from 'react';
+import { Avatar, Button, Popover } from 'antd';
+import { logoutUser } from '../../actions/authedUser'
+import { connect } from 'react-redux';
 
 class RightMenu extends Component {
+
+  handleClick = () => {
+    const {dispatch} = this.props
+    dispatch(logoutUser(''))
+  }
+
+  renderPopover = (user, authedUser) => {
+    return(
+      <span>
+          <div style={{ marginBottom: '10px' }}>{`Hello, ${user.name}`}</div>
+          <Button type="secondary" onClick={this.handleClick} >Logout</Button>
+      </span>
+    )
+  }
   render() {
+    const { user, authedUser } = this.props
+    
     return (
-      <Col sx={12} md={8}>
-        <div className="navStyle ">
-          <Menu  theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={['2']}
-          style={{ lineHeight: '64px', borderBottom: '#e8e8e8;' }}>
-            <Menu.Item>
-            <span>Hello, Tyler McGinnis</span>
-            </Menu.Item>
-            <Menu.Item>
-              <span>
-                <Avatar icon="user" src='https://i.pinimg.com/originals/f1/a3/6a/f1a36a8bf241e6deaa66c268d22b5035.jpg' />
-              </span>
-            </Menu.Item>
-            <Menu.Item>
-                <Button type="link" ghost>
-                    Log in
-                </Button>
-            </Menu.Item>
-          </Menu>
-        </div>
-      </Col>
+      <Fragment>
+      {authedUser === ''
+        ? ''
+        : (<div className="navStyle">
+            <Popover placement="topRight" content={this.renderPopover(user, authedUser)} trigger="click">
+              <Avatar style={{ cursor: 'pointer' }} icon="user" src={user.avatarURL} />
+            </Popover>
+          </div>)
+      }
+      </Fragment>
     );
   }
 }
 
-export default RightMenu;
+function mapStateToProps({ authedUser, users }) {
+  const user = users[authedUser] 
+  
+  return {
+    user,
+    authedUser
+  }
+}
 
-{/*<div className='mobileView navStyle'>
-              <Popover placement="topRight" content={content} trigger="click">
-                  <Avatar style={{marginLeft: '10px'}} icon="user" src='https://media4.s-nbcnews.com/j/newscms/2019_49/1516941/madbaby-today-main-tease1-191202_cecdbd51347888dce9ce34ed6ea98efe.fit-760w.jpg' />
-              </Popover>
-          </div>
-*/}
+export default connect(mapStateToProps)(RightMenu)
+

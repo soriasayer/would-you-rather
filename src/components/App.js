@@ -1,24 +1,40 @@
-import React from 'react';
-import 'antd/dist/antd.css';
-import '../index.css';
-import '../App.css';
-import Answer from './Answer';
-import NewQuestion from './NewQuestion';
-import LoginPage from './LoginPage';
-import Results from './Results';
-import LeaderBoard from './LeaderBoard';
-import Navbar from './navbar/Navbar';
-import QuestionsTab from './QuestionsTab';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import 'antd/dist/antd.css'
+import '../index.css'
+import '../App.css'
+import { connect } from 'react-redux'
+import { handleInitialData } from '../actions/shared'
+import LoadingBar from 'react-redux-loading'
+import NewQuestion from './NewQuestion'
+import LeaderBoard from './LeaderBoard'
+import Navbar from './navbar/Navbar'
+import QuestionsTab from './QuestionsTab'
+import LoginPage from './LoginPage'
+import Questions from './Questions'
+import PrivateRoute from './PrivateRoute'
+ class App extends Component {
+   componentDidMount() {
+     this.props.dispatch(handleInitialData())
+   }
 
-
-
-function App() {
-  return (
-    <div>
-      <Navbar />
-      <QuestionsTab />
-    </div>
-  );
+  render() {
+    return (
+      <Router>
+        <Fragment>
+          <Navbar />
+          <LoadingBar />
+            <div>
+              <Route path='/login' exact component={LoginPage} />
+              <PrivateRoute path='/' exact component={QuestionsTab} />
+              <PrivateRoute path='/questions/:id' component={Questions} />
+              <PrivateRoute path='/newQuestion' component={NewQuestion} />
+              <PrivateRoute path='/leaderBoard' component={LeaderBoard} />
+            </div>
+        </Fragment>
+      </Router>
+    );
+  }
 }
 
-export default App;
+export default connect()(App)

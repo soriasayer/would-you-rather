@@ -6,11 +6,6 @@
     }
   }
 
-  @media (max-width: 577px) {
-    .leftMenu, .rightMenu {
-        display: none !important;
-    }
-  }
 
   .imgContainer {
       display: flex;
@@ -32,21 +27,19 @@
 
   .avatarContainer {
     height: 100%;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
   }
 
   .avatarStyle {
     box-shadow: 0 0 4px #262626;
-    margin-bottom: 1.5rem !important;
   }
 
   .container {
     padding: 1.5rem;
     border-radius: 2px;
-    font-weight: 600;
   }
 
   .activeContainer {
@@ -60,16 +53,22 @@
       border: 1px solid rgba(236, 236, 236, 1);
   }
 
-  .scoreStyle {
+  .scorContainer {
     height: 100%;
     display: flex;
     justify-content: center;
+  }
+  .scoreStyle {
+    height: 50%;
+    width: 50px;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 12px;
     background-color: #fa8c16;
-    border-radius: 50%;
-    font-weight: 500;
-    font-size: 15px;
+    border-radius: 100%;
+    font-weight: 700;
+    font-size: 20px;
   }
 
   .answered {
@@ -85,11 +84,14 @@
     justify-content: space-evenly;
   }
 
-  .navStyle {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-end;
-    align-items: center;
+  p {
+    font-size: 18px;
   }
+  .resultP {
+    text-align: center;
+    font-weight: bold;
+  }
+
+ 
 
   
