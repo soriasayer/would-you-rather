@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { Row, Col, Form, Input, Button, Typography } from 'antd';
 import Cards from './common/cards'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { handleAddQuestion } from '../actions/questions'
+
 const { Title } = Typography;
 
 class NewQuestion extends Component {
     state = {
         optionOne: '',
-        optionTwo: ''
+        optionTwo: '',
+        toHome: false
     }
 
     handleOptionOneChange = (e) => {
@@ -21,12 +26,35 @@ class NewQuestion extends Component {
 
     handelSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state.optionOne)
-        console.log(this.state.optionTwo)
+
+        const { optionOne, optionTwo } = this.state
+        const { dispatch } = this.props
+
+        dispatch(handleAddQuestion({
+            optionOneText: optionOne,
+            optionTwoText: optionTwo
+        }))
+
+        this.setState({
+            toHome: optionOne && optionTwo ? true : false
+        })
+    }
+
+    isDisabled = () => {
+        const { optionOne, optionTwo } = this.state
+        if (optionOne === '' || optionTwo === '') {
+            return true
+        } else {
+            return false 
+        }
     }
 
     render() {
-        const { optionOne, optionTwo } = this.state
+        const { toHome } = this.state
+        
+        if(toHome === true) {
+            return <Redirect to='/' />
+        }
         return(
             <Cards title="Create New Question" headStyle={{backgroundColor: '#ECECEC', textAlign: "center"}}>
                 <Row gutter={24} type='flex' justify='center' >
@@ -42,7 +70,7 @@ class NewQuestion extends Component {
                             <Input placeholder="Entr option two" 
                                 onChange={this.handleOptionTwoChange}
                             />
-                            <Button /*disabled={optionOne && optionTwo === ''*/ type="primary" htmlType="submit" block>
+                            <Button disabled={this.isDisabled() } type="primary" htmlType="submit" block>
                                 Submit
                             </Button>
                         </Form.Item> 
@@ -54,5 +82,6 @@ class NewQuestion extends Component {
     }
 }
 
-export default NewQuestion
+
+export default connect()(NewQuestion)
 

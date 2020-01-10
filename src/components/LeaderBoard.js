@@ -6,15 +6,16 @@ import { connect } from 'react-redux'
 class LeaderBoard extends Component{
     render() {
         const { users } = this.props
+        console.log(users)
         return(
             <Fragment>
-                {Object.keys(users).map(user => (
-                    <div style={{marginBottom: '20px'}} key={users[user].id}>
+                {users.map(user => (
+                    <div style={{marginBottom: '20px'}} key={user.id}>
                         <Cards>
                             <Row gutter={16} type='flex' justify='center'>
                                 <Col sm={6} sx={24} >
                                     <div className=" avatarContainer">
-                                        <Avatar className="avatarStyle" size={130} icon="user" src={users[user].avatarURL} />
+                                        <Avatar className="avatarStyle" size={130} icon="user" src={user.avatarURL} />
                                     </div>
                                 </Col>
                                 <Col sm={1} >
@@ -23,15 +24,15 @@ class LeaderBoard extends Component{
                                     </div>
                                 </Col>
                                 <Col sm={11} sx={16} >
-                                    <h2>{users[user].name}</h2>
+                                    <h2>{user.name}</h2>
                                     <div className="answered">
                                         <p>Answered questions</p>
-                                        <div>{Object.keys(users[user].answers).length}</div>
+                                        <div>{Object.keys(user.answers).length}</div>
                                     </div>
                                     <Divider type='horizontal'/>
                                     <div className="answered">
                                         <p>Created questions</p>
-                                        <div>{users[user].questions.length}</div>
+                                        <div>{user.questions.length}</div>
                                     </div>
                                 </Col>
                                 <Col sm={1} >
@@ -41,7 +42,7 @@ class LeaderBoard extends Component{
                                     <div className='scorContainer'>
                                         <Card headStyle={{backgroundColor: '#ECECEC'}} bodyStyle={{display: 'flex', justifyContent: 'center', width: 185}} title="Score" bordered={true}>
                                             <div className="scoreStyle">
-                                                {(Object.keys(users[user].answers).length + (users[user].questions.length))}
+                                                {(Object.keys(user.answers).length + (user.questions.length))}
                                             </div>
                                         </Card>
                                     </div>
@@ -57,9 +58,19 @@ class LeaderBoard extends Component{
 }
 
 function mapStateToProps({users}) {
+
+    function sortedUser() {
+        const sortedUsers = Object.keys(users).sort((a,b) => 
+        Object.keys(users[b].answers).length - Object.keys(users[a].answers)
+        .length)
+
+       return sortedUsers.sort((a,b) => users[b].questions.length - users[a].questions.length)
+       .map(sortedUser => users[sortedUser])
+      
+    }
     
     return {
-        users
+        users: sortedUser()
     }
 }
 

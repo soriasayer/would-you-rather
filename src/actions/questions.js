@@ -6,13 +6,14 @@ export const ANSWER_QUESTIONS = 'ANSWER_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
 
 export function addQuestion(question) {
+    console.log(question)
     return {
         type: ADD_QUESTION,
         question
     }
 }
 
-export function handleAddQuestion(optionOneText, optionTwoText) {
+export function handleAddQuestion({optionOneText, optionTwoText}) {
     return (dispatch, getState) => {
         const { authedUser } = getState()
 
