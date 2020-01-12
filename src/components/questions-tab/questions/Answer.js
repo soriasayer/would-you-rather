@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Row, Col, Avatar, Typography, Radio, Button, Divider } from 'antd';
-import Cards from './common/cards'
+import Cards from '../../common/cards'
 import { connect } from 'react-redux'
-import { handleAnswerQuestions } from '../actions/questions'
+import { handleAnswerQuestions } from '../../../actions/questions'
 
 const { Title } = Typography
 

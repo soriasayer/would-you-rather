@@ -1,17 +1,20 @@
 import React, { Component, Fragment } from 'react'
-import { Row, Col, Card, Avatar, Divider } from 'antd';
+import { Row, Col, Card, Avatar, Divider, Icon } from 'antd';
 import Cards from './common/cards'
 import { connect } from 'react-redux'
 
 class LeaderBoard extends Component{
     render() {
         const { users } = this.props
-        console.log(users)
+    
         return(
             <Fragment>
-                {users.map(user => (
+                {users.map((user, index) => (
                     <div style={{marginBottom: '20px'}} key={user.id}>
                         <Cards>
+                            {index <= 2 && <span className={`medals-container medal-${index + 1}`}>
+                                <Icon theme="outlined" type="trophy" />
+                            </span>}
                             <Row gutter={16} type='flex' justify='center'>
                                 <Col sm={6} sx={24} >
                                     <div className=" avatarContainer">
@@ -49,8 +52,7 @@ class LeaderBoard extends Component{
                                 </Col>
                             </Row>
                         </Cards>
-                    </div>
-                   
+                    </div> 
                 ))}
             </Fragment>
         )

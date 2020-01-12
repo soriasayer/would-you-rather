@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Tabs} from 'antd';
+import './style.css'
 import { connect } from 'react-redux'
 import UnansweredQues from './UnasweredQues'
 import AnsweredQues from './AnsweredQues'

@@ -6,7 +6,6 @@
     }
   }
 
-
   .imgContainer {
       display: flex;
       justify-content: center;
@@ -37,22 +36,6 @@
     box-shadow: 0 0 4px #262626;
   }
 
-  .container {
-    padding: 1.5rem;
-    border-radius: 2px;
-  }
-
-  .activeContainer {
-    background-color: rgba(250, 140, 22, 0.05);
-    border: 1px solid rgba(250, 140, 22, 0.520);
-    color: #fa8c16;
-  }
-
-  .pasiveContainer {
-      background-color: rgba(236, 236, 236, 0.2);
-      border: 1px solid rgba(236, 236, 236, 1);
-  }
-
   .scorContainer {
     height: 100%;
     display: flex;
@@ -77,21 +60,38 @@
       justify-content: space-between;
   }
 
-  .detailContainer {
-    height: 100%;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-evenly;
-  }
-
   p {
     font-size: 18px;
   }
-  .resultP {
-    text-align: center;
-    font-weight: bold;
-  }
 
- 
+  .medals-container {
+    height: 85px;
+    width: 85px;
+    position: absolute;
+    left: 0;
+    top:0px;
+    background:#ECECEC;
+    align-content: center;
+    padding: 5px 10px;
+    font-size: 32px;
+    clip-path: polygon(1% 1%, 0% 100%, 100% 0);
+    }
 
+    .medal-1 {
+      color: gold;
+    }
+
+    .medal-2 {
+      color: rgb(102, 100, 100);
+    }
+
+    .medal-3 {
+      color:#fa8c16;
+    }
+
+
+
+   
+
+    
   

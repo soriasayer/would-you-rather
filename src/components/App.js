@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import 'antd/dist/antd.css'
 import '../index.css'
 import '../App.css'
@@ -9,28 +9,32 @@ import LoadingBar from 'react-redux-loading'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import Navbar from './navbar/Navbar'
-import QuestionsTab from './QuestionsTab'
+import QuestionsTab from './questions-tab/QuestionsTab'
 import LoginPage from './LoginPage'
-import Questions from './Questions'
+import Questions from './questions-tab/questions/Questions'
 import PrivateRoute from './PrivateRoute'
+import Error from './Error'
+
  class App extends Component {
    componentDidMount() {
      this.props.dispatch(handleInitialData())
    }
 
   render() {
+
     return (
       <Router>
         <Fragment>
           <Navbar />
           <LoadingBar />
-            <div>
+            <Switch>
               <Route path='/login' exact component={LoginPage} />
               <PrivateRoute path='/' exact component={QuestionsTab} />
               <PrivateRoute path='/questions/:id' component={Questions} />
-              <PrivateRoute path='/newQuestion' component={NewQuestion} />
-              <PrivateRoute path='/leaderBoard' component={LeaderBoard} />
-            </div>
+              <PrivateRoute path='/new-question' component={NewQuestion} />
+              <PrivateRoute path='/leader-board' component={LeaderBoard} />
+              <PrivateRoute component={Error} />
+            </Switch>
         </Fragment>
       </Router>
     );

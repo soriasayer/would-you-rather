@@ -28,10 +28,13 @@ class LoginPage extends Component {
     }
 
     render() {
+        
+        const { from } = this.props.location.state || { from: { pathname: '/' }} 
         const { users } = this.props
         const { toHome } = this.state
+
         if(toHome === true) {
-            return <Redirect to='/' />
+            return <Redirect to={from} />
         }
         return(
             <Cards title="Welcome to the Would You Rather App!" headStyle={{backgroundColor: '#ECECEC', textAlign: "center"}} >

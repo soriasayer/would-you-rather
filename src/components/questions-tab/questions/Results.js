@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Typography, Avatar, Progress,Divider } from 'antd';
-import Cards from './common/cards'
+import Cards from '../../common/cards'
 import { connect } from 'react-redux';
 
 const { Title } = Typography;
@@ -24,22 +24,24 @@ class Results extends Component {
                         </div>
                     </Col>
                     <Col className='borderLeft' sm={16} sx={24} >
-                    <div className="detailContainer">
-                        <Title level={4}>Results:</Title>
+                        <div className="detailContainer">
+                            <Title level={4}>Results:</Title>
                             <div className={`container ${optionOne === 3 ? "activeContainer" : "pasiveContainer" }`}
-                            style={{marginBottom: '10px'}}>
-                                <p>{`Would you rather ${question.optionOne.text}?`}</p>
-                                <Progress
-                                    strokeColor={{
-                                        from: '#fa8c16',
-                                        to: '#ffd591',
-                                    }}
+                                style={{marginBottom: '10px'}}>
+                                <span className={optionOne === 3 ? "notify-badge" : "" }>Your vote</span>
+                                    <p>{`Would you rather ${question.optionOne.text}?`}</p>
+                                    <Progress
+                                        strokeColor={{
+                                            from: '#fa8c16',
+                                            to: '#ffd591',
+                                        }}
                                     percent={Math.round((optionOne/3) * 100)}
                                     status="normal"
                                 />
                                 <p className="resultP">{`${optionOne} out of 3`}</p>
                             </div>
                             <div className={`container ${optionTwo === 3 ? "activeContainer" : "pasiveContainer" }`}>
+                                <span className={optionTwo === 3 ? "notify-badge" : "" }>Your vote</span>
                                 <p>{`Would you rather ${question.optionTwo.text}?`}</p>
                                 <Progress
                                     strokeColor={{
