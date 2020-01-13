@@ -15,18 +15,18 @@ class LeaderBoard extends Component{
                             {index <= 2 && <span className={`medals-container medal-${index + 1}`}>
                                 <Icon theme="outlined" type="trophy" />
                             </span>}
-                            <Row gutter={16} type='flex' justify='center'>
-                                <Col sm={6} sx={24} >
+                            <Row type='flex' justify='space-between'>
+                                <Col span={24} sm={5} >
                                     <div className=" avatarContainer">
                                         <Avatar className="avatarStyle" size={130} icon="user" src={user.avatarURL} />
                                     </div>
                                 </Col>
-                                <Col sm={1} >
-                                    <div className="divider">
-                                        <Divider type="vertical" style={{height: '100%'}} />
-                                    </div>
-                                </Col>
-                                <Col sm={11} sx={16} >
+
+                                <span className="divider">
+                                    <Divider type="vertical" style={{height: '100%'}} />
+                                </span>
+                                
+                                <Col span={24} sm={12} >
                                     <h2>{user.name}</h2>
                                     <div className="answered">
                                         <p>Answered questions</p>
@@ -38,17 +38,17 @@ class LeaderBoard extends Component{
                                         <div>{user.questions.length}</div>
                                     </div>
                                 </Col>
-                                <Col sm={1} >
+                                
+                                <span className="divider">
                                     <Divider type="vertical" style={{height: '100%'}} />
-                                </Col>
-                                <Col sm={5} sx={8} >
-                                    <div className='scorContainer'>
-                                        <Card headStyle={{backgroundColor: '#ECECEC'}} bodyStyle={{display: 'flex', justifyContent: 'center', width: 185}} title="Score" bordered={true}>
-                                            <div className="scoreStyle">
-                                                {(Object.keys(user.answers).length + (user.questions.length))}
-                                            </div>
-                                        </Card>
-                                    </div>
+                                </span>
+                                
+                                <Col span={24} sm={5} >
+                                    <Card headStyle={{backgroundColor: '#ECECEC'}} bodyStyle={{display: 'flex', justifyContent: 'center' }} style={{height: '100%'}} title="Score" bordered={true}>
+                                        <div className="scoreStyle">
+                                            {(Object.keys(user.answers).length + (user.questions.length))}
+                                        </div>
+                                    </Card>
                                 </Col>
                             </Row>
                         </Cards>

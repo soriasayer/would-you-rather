@@ -31,17 +31,17 @@ class Answer extends Component {
         return(
             <Cards title={`${user.name} asks:`} headStyle={{backgroundColor: '#ECECEC'}}>
                 <Row gutter={16} type='flex' justify='center'>
-                    <Col sm={8} sx={24} >
+                    <Col sm={8} span={24} >
                         <div className="avatarContainer">
                             <Avatar className="avatarStyle" size={160} icon="user" src={user.avatarURL} />
                         </div>
                     </Col>
-                    <Col sm={1} >
-                        <div className="divider">
+                    <Col span={1} >
+                        <span className="divider">
                             <Divider type="vertical" style={{height: '100%'}} />
-                        </div>
+                        </span>
                     </Col>
-                    <Col sm={15} sx={24} >
+                    <Col sm={15} span={24} >
                         <div className="detailContainer">
                             <Title level={3}>Would You Rater...</Title>
                             <Radio.Group 

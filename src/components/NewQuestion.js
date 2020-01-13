@@ -15,26 +15,24 @@ class NewQuestion extends Component {
     }
 
     handleOptionOneChange = (e) => {
-        this.setState({optionOne: e.target.value})
+        this.setState({optionOne: e.target.value.trim()})
     }
 
     handleOptionTwoChange = (e) => {
-        this.setState({optionTwo: e.target.value})
+        this.setState({optionTwo: e.target.value.trim()})
     }
-
-
 
     handelSubmit = (e) => {
         e.preventDefault()
 
         const { optionOne, optionTwo } = this.state
         const { dispatch } = this.props
-
+        
         dispatch(handleAddQuestion({
             optionOneText: optionOne,
             optionTwoText: optionTwo
         }))
-
+        
         this.setState({
             toHome: optionOne && optionTwo ? true : false
         })
@@ -58,7 +56,7 @@ class NewQuestion extends Component {
         return(
             <Cards title="Create New Question" headStyle={{backgroundColor: '#ECECEC', textAlign: "center"}}>
                 <Row gutter={24} type='flex' justify='center' >
-                    <Col md={24} >
+                    <Col span={24} >
                     <p>Complete the question:</p>
                     <Title level={4}>Would You Rater...</Title>
                     <Form onSubmit={this.handelSubmit}>
@@ -81,7 +79,6 @@ class NewQuestion extends Component {
         )
     }
 }
-
 
 export default connect()(NewQuestion)
 

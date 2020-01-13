@@ -39,7 +39,7 @@ class LoginPage extends Component {
         return(
             <Cards title="Welcome to the Would You Rather App!" headStyle={{backgroundColor: '#ECECEC', textAlign: "center"}} >
                 <Row gutter={24} type='flex' justify='center' >
-                    <Col sm={24} >
+                    <Col span={24} >
                         <div className='imgContainer'>
                             <img alt="redux" src="https://www.clker.com/cliparts/N/0/4/q/4/R/react-redux.svg" className="imgSize" />
                         </div>

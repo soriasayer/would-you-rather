@@ -5,7 +5,7 @@ import Media from 'react-media';
 
 class LeftMenu extends Component {
   state = {
-    current: 'mail',
+    current: '1',
   };
 
   handleClick = e => {

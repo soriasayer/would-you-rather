@@ -13,17 +13,17 @@ class Results extends Component {
         return(
             <Cards title={`Asked by ${user.name}`}headStyle={{backgroundColor: '#ECECEC'}}>
                 <Row gutter={16} type='flex' justify='center' >
-                    <Col sm={7} sx={24} >
+                    <Col sm={7} span={24} >
                         <div className="avatarContainer">
                             <Avatar className="avatarStyle" size={160} icon="user" src={user.avatarURL} />
                         </div>
                     </Col>
-                    <Col sm={1} >
-                        <div className="divider">
+                    <Col span={1} >
+                        <span className="divider">
                             <Divider type="vertical" style={{height: '100%'}} />
-                        </div>
+                        </span>
                     </Col>
-                    <Col className='borderLeft' sm={16} sx={24} >
+                    <Col className='borderLeft' sm={16} span={24} >
                         <div className="detailContainer">
                             <Title level={4}>Results:</Title>
                             <div className={`container ${optionOne === 3 ? "activeContainer" : "pasiveContainer" }`}

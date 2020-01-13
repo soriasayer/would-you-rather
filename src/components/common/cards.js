@@ -5,7 +5,7 @@ function cards ({ headStyle, title, children} ) {
     return(
         <Row style={{marginTop: '20px'}}>
             <Col xs={{ span: 22, offset: 1}} md={{ span: 16, offset: 4 }} >
-                <Card headStyle={headStyle} title={title} bordered={true}>
+                <Card headStyle={headStyle} title={title} bordered={true} >
                     {children}
                 </Card>
             </Col>
