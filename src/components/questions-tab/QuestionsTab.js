@@ -16,14 +16,18 @@ class QuestionsTab extends Component {
                 <Col xs={{ span: 22, offset: 1}} lg={{ span: 20, offset: 2 }}>
                     <Tabs tabBarStyle={{display: 'flex', justifyContent: 'center'}} type="card">
                         <TabPane tab="Unanswered Questions" key="1" >
-                        {unansweredQuestions.map(id => (
+                        {unansweredQuestions.length === 0 
+                            ? <div className='empty-page'><p>Page is empty! no more unanswered questions exist.</p></div> 
+                            : unansweredQuestions.map(id => (
                             <div key={id} style={{marginBottom: '15px'}} >
                                 <UnansweredQues id={id} />
                             </div>
                         ))}
                         </TabPane>
                         <TabPane tab="Answered Questions" key="2" >
-                        {answeredQuestions.map(id => (
+                        {answeredQuestions.length === 0 
+                            ? <div className='empty-page'><p>Page is empty! no question has been answered yet.</p></div> 
+                            : answeredQuestions.map(id => (
                             <div key={id} style={{marginBottom: '15px'}} >
                                 <AnsweredQues id={id} />
                             </div>

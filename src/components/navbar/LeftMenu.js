@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Menu } from 'antd';
 import Media from 'react-media';
 
 class LeftMenu extends Component {
-  state = {
-    current: '1',
-  };
-
-  handleClick = e => {
-    console.log('click ', e);
-    this.setState({
-      current: e.key,
-    });
-  };
+  
   render() {
     return (
       <Media queries={{
@@ -25,18 +16,17 @@ class LeftMenu extends Component {
         <Menu
           theme="dark"
           mode={matches.small ? "vertical" : "horizontal"} 
-          onClick={this.handleClick} 
-          selectedKeys={[this.state.current]}
+          selectedKeys={[this.props.location.pathname]}
           style={{ lineHeight: '64px' }}>
-          <Menu.Item key="1">
+          <Menu.Item key="/">
             Home
             <Link to="/" />
           </Menu.Item>
-          <Menu.Item key="2">
+          <Menu.Item key="/new-question">
             New Question
             <Link to="/new-question" />
           </Menu.Item>
-          <Menu.Item key="3">
+          <Menu.Item key="/leader-board">
             Leader Board
             <Link to="/leader-board" />
           </Menu.Item>
@@ -47,4 +37,4 @@ class LeftMenu extends Component {
   }
 }
 
-export default LeftMenu;
+export default withRouter(LeftMenu)

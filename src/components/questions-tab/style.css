@@ -46,3 +46,13 @@
     flex-flow: column wrap;
     justify-content: space-evenly;
   }
+
+  .empty-page {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ECECEC;
+    font-weight: bold;
+  }
