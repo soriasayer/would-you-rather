@@ -56,3 +56,14 @@
     background-color: #ECECEC;
     font-weight: bold;
   }
+
+  .close-btn {
+    display: flex;
+    float: right;
+    transform: translate(10px, -65px);
+    justify-content: center;
+  }
+
+  .close-btn:hover {
+    color: #fa8c16;
+  }

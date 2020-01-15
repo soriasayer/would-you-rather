@@ -224,3 +224,28 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
     }, 500)
   })
 }
+
+export function _removeQuestion({removedQuestion, authedUser}) {
+  return new Promise((res, rej) => {
+    const authedUser = removedQuestion.author
+    setTimeout(() => {
+      const questionsList = Object.keys(questions).map(question => questions[question]).filter((currentQuestion) => currentQuestion.id !== removedQuestion.id);
+      const newQuestion = questionsList.map(question => ( { [question.id]: question } ))
+      const filteredQuestions = Object.assign({}, ...newQuestion)
+      
+      questions = {
+        ...filteredQuestions
+      }
+
+      users = {
+        ...users,
+        [authedUser]: {
+          ...users[authedUser],
+          questions: users[authedUser].questions.filter(question => question !== removedQuestion.id)
+        }
+      }
+
+      res();
+    }, 500)
+  })
+}

@@ -14,6 +14,7 @@ class AnsweredQues extends Component {
 
     render(){
         const { user, question } = this.props
+       
         return(
             <Row>
                 <Col span={22} offset= {1} sm={{ span: 24, offset: 0 }} >

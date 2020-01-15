@@ -1,9 +1,31 @@
-import { saveQuestionAnswer, saveQuestion } from '../utils/api'
+import { saveQuestionAnswer, saveQuestion, removeQuestion } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ANSWER_QUESTIONS = 'ANSWER_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
+export const REMOVE_QUESTION = 'REMOVE_QUESTION'
+
+export function deleteQuestion({removedQuestion, authedUser}) {
+    return {
+        type: REMOVE_QUESTION,
+        removedQuestion,
+        authedUser
+    }
+}
+
+export function handleDeleteQuestion(info) {
+    return (dispatch) => {
+        dispatch(deleteQuestion(info))
+
+        return removeQuestion(info)
+        .catch((e) => {
+            console.warn('Error in handleDeleteQuestion', e)
+            alert('There was an error, try again.')
+        })
+
+    }
+}
 
 export function addQuestion(question) {
     return {

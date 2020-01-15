@@ -1,25 +1,56 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, Card, Avatar, Typography, Button, Divider } from 'antd';
+import { Row, Col, Card, Avatar, Typography, Button, Divider, Icon, Modal } from 'antd';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
+import { handleDeleteQuestion } from '../../actions/questions'
 
 
 const { Title } = Typography;
 
 class UnansweredQues extends Component {
+    state = { visible: false };
+
+    showModal = () => {
+        this.setState({visible: true})
+    }
+
+    handleCancel = e => {
+        this.setState({visible: false})
+    }
+
     handleClick = (e, id) => {
         e.preventDefault()
 
         this.props.history.push(`/questions/${id}`)
     }
+
+    handleRemoveButton = () => {
+        const { question, dispatch } = this.props
+        
+        dispatch(handleDeleteQuestion({
+            authedUser: question.author,
+            removedQuestion: question
+        }))
+    }
+
     render(){
-        const { user, question } = this.props
+        const { user, question, userQuestions } = this.props
+        const isMyQuestions = userQuestions.filter(userQuestion => userQuestion === question.id)
         
         return(
             <Row>
                 <Col  span={22} offset= {1} sm={{ span: 24, offset: 0 }} >
-                    <Card title={`${user.name} asks:`} headStyle={{backgroundColor: '#ECECEC'}} bordered={true}>
+                    <Card title={`${user.name} asks:`} headStyle={{backgroundColor: '#ECECEC'}} bordered={true} >
+                    {!!isMyQuestions.length && <Icon type="close-circle" className="close-btn" onClick={this.showModal} /> }
+                        <Modal
+                            title="Please confirm!"
+                            visible={this.state.visible}
+                            onOk={this.handleRemoveButton}
+                            onCancel={this.handleCancel}
+                        >
+                            <p>This question will be permanently deleted.</p>
+                        </Modal>
                         <Row gutter={16} type='flex' justify='center'>
                             <Col sm={8} span={24} >
                                 <div className="avatarContainer">
@@ -52,13 +83,15 @@ class UnansweredQues extends Component {
     }
 }
 
-function mapStateToProps({questions, users}, {id}) {
+function mapStateToProps({questions, users, authedUser}, {id}) {
     const question = questions[id]
     const user = users[question.author]
-
+    const userQuestions = users[authedUser].questions
+    
     return {
         question,
-        user
+        user,
+        userQuestions,
     }
    
 }
