@@ -171,7 +171,7 @@ export function _saveQuestion (question) {
   })
 }
 
-function formatUser(id, name, avatarURL, answers, questions) {
+function formatUser({id, name, avatarURL, answers, questions}) {
   return {
     id,
     name,

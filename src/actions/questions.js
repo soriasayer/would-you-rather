@@ -6,7 +6,6 @@ export const ANSWER_QUESTIONS = 'ANSWER_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
 
 export function addQuestion(question) {
-    console.log(question)
     return {
         type: ADD_QUESTION,
         question

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Row, Col, Select, Avatar, Button, Typography } from 'antd';
+import { Row, Col, Select, Avatar, Button, Typography, Icon } from 'antd';
 import Cards from './common/cards'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -60,6 +60,12 @@ class LoginPage extends Component {
                         onClick={this.handleOnClick}>
                             Log in
                         </Button>
+                        <div style={{marginTop: '24px'}}>
+                            <p>Don't have an acount? <Link to='/sign-up'>
+                                Sign Up <Icon type="arrow-right" />
+                            </Link></p>
+                        </div>
+                        
                     </Col>
                 </Row>    
             </Cards>

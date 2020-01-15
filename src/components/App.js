@@ -14,6 +14,7 @@ import LoginPage from './LoginPage'
 import Questions from './questions-tab/questions/Questions'
 import PrivateRoute from './PrivateRoute'
 import Error from './Error'
+import AddUser from './AddUser'
 
  class App extends Component {
    componentDidMount() {
@@ -26,9 +27,10 @@ import Error from './Error'
       <Router>
         <Fragment>
           <Navbar />
-          <LoadingBar />
+          <LoadingBar className="loading" />
             <Switch>
-              <Route path='/login' exact component={LoginPage} />
+              <Route path='/sign-up' component={AddUser} />
+              <Route path='/login'  component={LoginPage} />
               <PrivateRoute path='/' exact component={QuestionsTab} />
               <PrivateRoute path='/questions/:id' component={Questions} />
               <PrivateRoute path='/new-question' component={NewQuestion} />
