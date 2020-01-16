@@ -26,7 +26,7 @@ class Results extends Component {
                     <Col className='borderLeft' sm={16} span={24} >
                         <div className="detailContainer">
                             <Title level={4}>Results:</Title>
-                            <div className={`container ${optionOne === 3 ? "activeContainer" : "pasiveContainer" }`}
+                            <div className={`container ${optionOne ? "activeContainer" : "pasiveContainer" }`}
                                 style={{marginBottom: '10px'}}>
                                 <span className={optionOne === 3 ? "notify-badge" : "" }>Your vote</span>
                                     <p>{`Would you rather ${question.optionOne.text}?`}</p>
@@ -40,7 +40,7 @@ class Results extends Component {
                                 />
                                 <p className="resultP">{`${optionOne} out of 3`}</p>
                             </div>
-                            <div className={`container ${optionTwo === 3 ? "activeContainer" : "pasiveContainer" }`}>
+                            <div className={`container ${optionTwo ? "activeContainer" : "pasiveContainer" }`}>
                                 <span className={optionTwo === 3 ? "notify-badge" : "" }>Your vote</span>
                                 <p>{`Would you rather ${question.optionTwo.text}?`}</p>
                                 <Progress

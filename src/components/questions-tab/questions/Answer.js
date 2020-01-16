@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col, Avatar, Typography, Radio, Button, Divider } from 'antd';
 import Cards from '../../common/cards'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { handleAnswerQuestions } from '../../../actions/questions'
 
 const { Title } = Typography
@@ -23,11 +24,15 @@ class Answer extends Component {
             qid: question.id,
             answer: this.state.value
         })) 
-       
     }
 
     render() {
         const { question, user } = this.props
+
+        if(user === null) {
+            return <Redirect to='/404' />
+        }
+
         return(
             <Cards title={`${user.name} asks:`} headStyle={{backgroundColor: '#ECECEC'}}>
                 <Row gutter={16} type='flex' justify='center'>
@@ -72,7 +77,7 @@ class Answer extends Component {
 
 function mapStateToProps({questions, authedUser, users}, {id}) {
     const question = questions[id]
-    const user = users[question.author]
+    const user = question ? users[question.author] : null
       
     return {
         question,

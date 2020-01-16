@@ -33,9 +33,10 @@ import AddUser from './AddUser'
               <Route path='/login'  component={LoginPage} />
               <PrivateRoute path='/' exact component={QuestionsTab} />
               <PrivateRoute path='/questions/:id' component={Questions} />
-              <PrivateRoute path='/new-question' component={NewQuestion} />
-              <PrivateRoute path='/leader-board' component={LeaderBoard} />
-              <PrivateRoute component={Error} />
+              <PrivateRoute path='/add' component={NewQuestion} />
+              <PrivateRoute path='/leaderboard' component={LeaderBoard} />
+              <PrivateRoute path="*" component={Error} />
+              <PrivateRoute path="/404" component={Error} />
             </Switch>
         </Fragment>
       </Router>

@@ -22,13 +22,13 @@ class LeftMenu extends Component {
             Home
             <Link to="/" />
           </Menu.Item>
-          <Menu.Item key="/new-question">
+          <Menu.Item key="/add">
             New Question
-            <Link to="/new-question" />
+            <Link to="/add" />
           </Menu.Item>
-          <Menu.Item key="/leader-board">
+          <Menu.Item key="/leaderboard">
             Leader Board
-            <Link to="/leader-board" />
+            <Link to="/leaderboard" />
           </Menu.Item>
         </Menu>
       )}
