@@ -7,9 +7,11 @@ const { Title } = Typography;
 
 class Results extends Component {
     render() {
-        const { question, user } = this.props
+        const { question, user, isOptionOne, isOptionTwo } = this.props
+    
         const optionOne = question.optionOne.votes.length
         const optionTwo = question.optionTwo.votes.length
+        
         return(
             <Cards title={`Asked by ${user.name}`}headStyle={{backgroundColor: '#ECECEC'}}>
                 <Row gutter={16} type='flex' justify='center' >
@@ -26,9 +28,9 @@ class Results extends Component {
                     <Col className='borderLeft' sm={16} span={24} >
                         <div className="detailContainer">
                             <Title level={4}>Results:</Title>
-                            <div className={`container ${optionOne ? "activeContainer" : "pasiveContainer" }`}
+                            <div className={`container ${isOptionOne ? "activeContainer" : "pasiveContainer" }`}
                                 style={{marginBottom: '10px'}}>
-                                <span className={optionOne === 3 ? "notify-badge" : "" }>Your vote</span>
+                                <span className={isOptionOne ? "notify-badge" : "" }>Your vote</span>
                                     <p>{`Would you rather ${question.optionOne.text}?`}</p>
                                     <Progress
                                         strokeColor={{
@@ -40,8 +42,8 @@ class Results extends Component {
                                 />
                                 <p className="resultP">{`${optionOne} out of 3`}</p>
                             </div>
-                            <div className={`container ${optionTwo ? "activeContainer" : "pasiveContainer" }`}>
-                                <span className={optionTwo === 3 ? "notify-badge" : "" }>Your vote</span>
+                            <div className={`container ${isOptionTwo ? "activeContainer" : "pasiveContainer" }`}>
+                                <span className={isOptionTwo ? "notify-badge" : "" }>Your vote</span>
                                 <p>{`Would you rather ${question.optionTwo.text}?`}</p>
                                 <Progress
                                     strokeColor={{
@@ -61,13 +63,17 @@ class Results extends Component {
     }
 }
 
-function mapStateToProps({questions, users}, {id}) {
+function mapStateToProps({questions, users, authedUser}, {id}) {
     const question = questions[id]
     const user = users[question.author]
-    
+    const isOptionOne = question.optionOne.votes.filter(userID => userID === users[authedUser].id)
+    const isOptionTwo = question.optionTwo.votes.filter(userID => userID === users[authedUser].id)
+
     return {
         question,
-        user
+        user,
+        isOptionOne: !!isOptionOne.length,
+        isOptionTwo: !!isOptionTwo.length
     }
 }
 

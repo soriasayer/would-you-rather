@@ -8,6 +8,8 @@ In this application, user will be able to sign-up and sign-in, answer questions,
 
 To install the application:
 
--> install all project dependencies with npm install
--> start the development server with npm start
+* install all project dependencies with  - `npm install`
+* start the development server with  - `npm start`
+
+
 
