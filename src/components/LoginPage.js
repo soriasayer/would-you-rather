@@ -22,8 +22,9 @@ class LoginPage extends Component {
         const { dispatch } = this.props
         const { name } = this.state
         dispatch(setAuthedUser(name))
+
         this.setState({
-            toHome: name ? true : false
+            toHome: true
         })
     }
 
@@ -36,6 +37,7 @@ class LoginPage extends Component {
         if(toHome === true) {
             return <Redirect to={from} />
         }
+
         return(
             <Cards title="Welcome to the Would You Rather App!" headStyle={{backgroundColor: '#ECECEC', textAlign: "center"}} >
                 <Row gutter={24} type='flex' justify='center' >
@@ -43,7 +45,7 @@ class LoginPage extends Component {
                         <div className='imgContainer'>
                             <img alt="redux" src="https://www.clker.com/cliparts/N/0/4/q/4/R/react-redux.svg" className="imgSize" />
                         </div>
-                        <Title style={{fontSize: 14}} level={4}>Please login to continue...</Title>
+                        <Title style={{fontSize: 14}} level={4}>Please login to view this page at {from.pathname}.</Title>
                         <Select 
                         placeholder="Select a User"
                         className="selectStyle" 

@@ -19,7 +19,7 @@ class Navbar extends Component {
                         {matches => {
                             if (matches.small) {
                                 return (
-                                    <Col span={22} offset={1}>
+                                    <Col span={22} offset={1} >
                                         <MobileNav />
                                     </Col>
                                 )

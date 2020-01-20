@@ -8,8 +8,8 @@ class DesktopNav extends Component {
 
   render() {
     return (
-        <Row type="flex" align="middle">
-			<Col md={20} lg={20} >
+        <Row type="flex" justify='space-between'>
+			<Col span={17} >
 				<div style={{ display: 'flex' }}>
 					<div className="logo" style={{ textAlign: 'left', marginRight: '8px' }}>
 						Would You Rather?
@@ -17,7 +17,7 @@ class DesktopNav extends Component {
 					<LeftMenu />
 				</div>
 			</Col>
-			<Col md={4} lg={4}>
+			<Col span={7}>
 				<RightMenu />
 			</Col>
 		</Row>

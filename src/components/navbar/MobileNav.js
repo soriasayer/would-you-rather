@@ -22,8 +22,8 @@ class MobileNav extends Component {
 
 	render() {
 		return (
-			<Row type="flex" align="middle">
-				<Col xs={{ span: 4, offset: 1 }} >
+			<Row>
+				<Col span={10}>
 					<Button type="primary" onClick={this.showDrawer} className="showInMobile">
 						<Icon type="menu-unfold" />
 					</Button>
@@ -35,13 +35,13 @@ class MobileNav extends Component {
 						onClose={this.onClose}
 						visible={this.state.visible}
 					>
+						<div className="logo" style={{ textAlign: 'center', margin: '10px'}}>
+							Would You Rather?
+						</div>
 						<LeftMenu />
 					</Drawer>
 				</Col>
-				<Col xs={{ span: 15 }}>
-					<div className="logo" style={{ textAlign: 'center' }}>Would You Rather?</div>
-				</Col>
-				<Col xs={{ span: 3 }}>
+				<Col span={14}>
 					<RightMenu />
 				</Col>
 			</Row>

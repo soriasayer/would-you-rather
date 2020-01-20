@@ -37,10 +37,10 @@ class Results extends Component {
                                             from: '#fa8c16',
                                             to: '#ffd591',
                                         }}
-                                    percent={Math.round((optionOne/3) * 100)}
+                                    percent={Math.round((optionOne / (optionOne + optionTwo)) * 100)}
                                     status="normal"
                                 />
-                                <p className="resultP">{`${optionOne} out of 3`}</p>
+                                <p className="resultP">{`${optionOne} out of ${optionOne + optionTwo}`}</p>
                             </div>
                             <div className={`container ${isOptionTwo ? "activeContainer" : "pasiveContainer" }`}>
                                 <span className={isOptionTwo ? "notify-badge" : "" }>Your vote</span>
@@ -50,10 +50,10 @@ class Results extends Component {
                                         from: '#fa8c16',
                                         to: '#ffd591',
                                     }}
-                                    percent={Math.round((optionTwo/3) * 100)} 
+                                    percent={Math.round((optionTwo / (optionOne + optionTwo)) * 100)} 
                                     status="normal"
                                 />
-                                <p className="resultP">{`${optionTwo} out of 3`}</p>
+                                <p className="resultP">{`${optionTwo} out of ${optionOne + optionTwo}`}</p>
                             </div>
                         </div>
                     </Col>
